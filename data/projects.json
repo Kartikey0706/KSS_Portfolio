@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "title": "Scentoria — Perfume Discovery & Catalog",
+    "description": "A luxury perfume discovery platform with a searchable, filterable product catalog, detailed fragrance pages with pricing, a shopping cart, and a wishlist — in a responsive, dark glassmorphism UI.",
+    "tags": ["React", "TypeScript", "Tailwind CSS", "Vite", "JavaScript"],
+    "liveUrl": "https://scentoria-ognl.onrender.com",
+    "githubUrl": "https://github.com/Kartikey0706/Scentoria",
+    "featured": true,
+    "gradient": "linear-gradient(135deg, #5EEAD4, #0891b2)"
+  },
+  {
+    "id": 2,
+    "title": "QuantumMark — Digital Watermarking Platform",
+    "description": "A full-stack image watermarking platform pairing a Flask backend with simulator-based quantum key generation. Embeds and verifies watermarks while reporting PSNR, SSIM, entropy, and resilience against attacks like JPEG compression, noise, rotation, crop, and blur.",
+    "tags": ["Python", "Flask", "JavaScript", "Qiskit", "Image Processing"],
+    "liveUrl": "https://kartikey0706.github.io/QuantumMark/",
+    "githubUrl": "https://github.com/Kartikey0706/QuantumMark",
+    "featured": false,
+    "gradient": "linear-gradient(135deg, #8B5CF6, #7c3aed)"
+  },
+  {
+    "id": 3,
+    "title": "WeatherNow — Real-Time Weather App",
+    "description": "A real-time weather app showing current conditions, a 5-day forecast, hourly trends, and air quality index, powered by the OpenWeatherMap API with an offline-aware, glassmorphism interface.",
+    "tags": ["JavaScript", "HTML5", "CSS3", "OpenWeatherMap API"],
+    "liveUrl": "https://kartikey0706.github.io/WeatherNow/",
+    "githubUrl": "https://github.com/Kartikey0706/WeatherNow",
+    "featured": false,
+    "gradient": "linear-gradient(135deg, #60A5FA, #2563eb)"
+  }
+]

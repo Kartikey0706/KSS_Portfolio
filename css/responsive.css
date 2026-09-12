@@ -1,0 +1,228 @@
+/*
+ * ============================================================
+ *  responsive.css — Media Queries (Mobile / Tablet)
+ *  Portfolio of Kartikey Singh Suryavanshi
+ * ============================================================
+ *
+ *  Breakpoints used:
+ *  ─ max-width: 1024px → Tablet / Small Laptop
+ *  ─ max-width:  768px → Mobile Landscape / Tablet Portrait
+ *  ─ max-width:  480px → Mobile Portrait (small screens)
+ *
+ *  STRATEGY: Desktop-first. All base styles are in style.css.
+ *  This file ONLY contains overrides for smaller screens.
+ * ============================================================
+ */
+
+
+/* ============================================================
+   TABLET (≤ 1024px)
+   ============================================================ */
+@media (max-width: 1024px) {
+
+  /* ── Hero ── */
+  .hero {
+    flex-direction: column;
+    text-align:     center;
+    gap:            60px;
+    padding-top:    100px;
+  }
+  .hero-content { align-items: center; }
+  .hero-desc    { max-width: 560px; }
+
+  /* Float badges shift closer on tablet */
+  .float-1 { top: 5%;   right: -5%; }
+  .float-2 { bottom: 5%; left: -5%; }
+  .float-3 { top: 50%;  right: -6%; }
+
+  /* ── About Bento Grid ── */
+  .about-grid { grid-template-columns: repeat(4, 1fr); }
+  .card-lg    { grid-column: span 4; }
+  .card-sm    { grid-column: span 2; }
+  .card-wide  { grid-column: span 4; }
+
+  /* ── Projects ── */
+  .project-large {
+    flex-direction: column;
+  }
+  .project-mockup { max-width: 100%; }
+
+  /* ── Contact ── */
+  .contact-layout {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  /* ── Footer ── */
+  .footer-content {
+    grid-template-columns: 1fr 1fr;
+  }
+  .footer-brand { grid-column: span 2; }
+}
+
+
+/* ============================================================
+   MOBILE LANDSCAPE / TABLET PORTRAIT (≤ 768px)
+   ============================================================ */
+@media (max-width: 768px) {
+
+  /* ── Layout ── */
+  :root { --section-gap: 80px; }
+
+  /* ── Navbar: show hamburger, hide nav-links by default ── */
+  .hamburger {
+    display:         flex;
+    width:           44px;
+    height:          44px;
+    align-items:     center;
+    justify-content: center;
+  }
+
+  .nav-links {
+    position:       fixed;
+    top:            0; left: 0; right: 0;
+    height:         100vh;
+    background:     rgba(3, 7, 18, 0.97);
+    backdrop-filter: blur(24px);
+    flex-direction: column;
+    justify-content: center;
+    gap:            24px;
+    transform:      translateX(100%);  /* Hidden off-screen */
+    transition:     transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index:        999;
+  }
+  /* JS adds .open to #navLinks to slide it in */
+  .nav-links.open { transform: translateX(0); }
+
+  .nav-link {
+    font-size: 1.3rem;
+    padding:   12px 32px;
+  }
+
+  /* ── Hero ── */
+  .hero {
+    gap:         40px;
+    padding-top: 90px;
+    padding-bottom: 60px;
+  }
+  .hero-title  { font-size: clamp(2rem, 8vw, 3rem); }
+  .hero-visual { width: 100%; }
+  .code-card   { max-width: 100%; }
+  .code-body   {
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  /* Hide float badges on small screens (too cluttered) */
+  .float-1, .float-2, .float-3 { display: none; }
+
+  .scroll-hint { display: none; }
+
+  /* ── About Grid ── */
+  .about-grid { grid-template-columns: repeat(2, 1fr); }
+  .card-lg    { grid-column: span 2; flex-direction: column; }
+  .card-sm    { grid-column: span 1; }
+  .card-wide  { grid-column: span 2; }
+
+  /* ── Tech Stack ── */
+  .tech-grid { grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); }
+
+  /* ── Projects Grid ── */
+  .projects-grid { grid-template-columns: 1fr; }
+  .project-large { grid-column: span 1; }
+
+  /* ── Timeline ── */
+  .timeline-line { display: none; }
+  .timeline-item {
+    width: 100%;
+    margin-left: 0 !important;
+  }
+  .timeline-dot { display: none; }
+
+  /* ── Certs ── */
+  .certs-grid { grid-template-columns: 1fr; }
+
+  /* ── Contact ── */
+  .form-row { grid-template-columns: 1fr; }
+
+  /* Keep compact links comfortable to tap on touch screens. */
+  .social-chip,
+  .proj-btn {
+    min-height: 44px;
+  }
+  .cert-link,
+  .footer-social-link,
+  .back-top {
+    width:  44px;
+    height: 44px;
+  }
+
+  /* ── Footer ── */
+  .footer-content { grid-template-columns: 1fr; gap: 32px; }
+  .footer-brand   { grid-column: span 1; }
+  .footer-bottom  { flex-direction: column; gap: 16px; text-align: center; }
+}
+
+
+/* ============================================================
+   MOBILE PORTRAIT — Small Screens (≤ 480px)
+   ============================================================ */
+@media (max-width: 480px) {
+
+  /* Tighter horizontal padding */
+  .container { padding: 0 16px; }
+
+  /* ── Hero ── */
+  .hero { padding: 80px 16px 48px; }
+  .hero-actions { flex-direction: column; }
+  .btn          { width: 100%; justify-content: center; }
+
+  /* ── About ── */
+  .about-grid   { grid-template-columns: 1fr; }
+  .card-lg,
+  .card-sm,
+  .card-wide    { grid-column: span 1; }
+  .card-lg      { flex-direction: column; }
+
+  /* ── Tech ── */
+  .tech-grid { grid-template-columns: repeat(3, 1fr); }
+
+  /* ── Projects ── */
+  .project-actions { flex-direction: column; }
+  .proj-btn        { width: 100%; justify-content: center; }
+
+  /* ── Contact ── */
+  .contact-socials { flex-direction: column; }
+  .social-btn      { min-width: unset; }
+
+  /* ── Footer ── */
+  .footer-tagline { max-width: 100%; }
+}
+
+
+/* ============================================================
+   REDUCED MOTION (Accessibility)
+   Users who prefer reduced motion see no animations.
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration:        0.01ms !important;
+    animation-iteration-count: 1     !important;
+    transition-duration:       0.01ms !important;
+  }
+
+  /* Reveal elements immediately (no fade-in) */
+  .reveal-up,
+  .reveal-left,
+  .reveal-right {
+    opacity:   1;
+    transform: none;
+  }
+
+  /* Hide cursor ring (no trailing effect) */
+  .cursor-ring { display: none; }
+}

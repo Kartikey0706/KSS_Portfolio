@@ -1,0 +1,228 @@
+/*
+ * ============================================================
+ *  animations.css — Keyframes & Animation Classes
+ *  Portfolio of Kartikey Singh Suryavanshi
+ * ============================================================
+ *
+ *  TABLE OF CONTENTS
+ *  1.  Keyframe Definitions
+ *  2.  Scroll-Reveal Base Classes (.reveal-up / -left / -right)
+ *  3.  Magnetic Button Effect
+ *  4.  Float Badges Floating Loop
+ *  5.  Navbar Active Link Underline
+ *  6.  Orb Drift Animations (slow, continuous)
+ *
+ *  NOTE: The JS that TRIGGERS these classes lives in:
+ *        js/animations.js  (IntersectionObserver reveal)
+ *        js/particles.js   (orb movement)
+ *        js/script.js      (typed text, cursor)
+ * ============================================================
+ */
+
+
+/* ============================================================
+   1. KEYFRAME DEFINITIONS
+   ============================================================ */
+
+/* Pulsing dot (availability badge, status dot) */
+@keyframes pulse {
+  0%, 100% { opacity: 1;   transform: scale(1);   box-shadow: 0 0 0 0   rgba(94,234,212,0.4); }
+  50%       { opacity: 0.8; transform: scale(1.1); box-shadow: 0 0 0 6px rgba(94,234,212,0); }
+}
+
+/* Blinking cursor bar (typed text) */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+/* Mouse scroll wheel drop */
+@keyframes scrollWheel {
+  0%   { transform: translateY(0);    opacity: 1; }
+  80%  { transform: translateY(8px);  opacity: 0; }
+  100% { transform: translateY(0);    opacity: 0; }
+}
+
+/* Avatar ring pulse */
+@keyframes ringPulse {
+  0%, 100% { transform: scale(1);    opacity: 0.4; }
+  50%       { transform: scale(1.06); opacity: 0.15; }
+}
+
+/* Floating up-and-down loop (hero badge panels) */
+@keyframes floatY {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-10px); }
+}
+
+/* Slow 360° rotation (unused visually but available) */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* Fade + slide in from below (generic reveal) */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Fade + slide in from left */
+@keyframes fadeLeft {
+  from { opacity: 0; transform: translateX(-40px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* Fade + slide in from right */
+@keyframes fadeRight {
+  from { opacity: 0; transform: translateX(40px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* Slow drift for background gradient orbs */
+@keyframes orbDrift1 {
+  0%   { transform: translate(0, 0)   scale(1); }
+  33%  { transform: translate(60px, -40px) scale(1.05); }
+  66%  { transform: translate(-30px, 50px)  scale(0.97); }
+  100% { transform: translate(0, 0)   scale(1); }
+}
+@keyframes orbDrift2 {
+  0%   { transform: translate(0, 0)    scale(1); }
+  33%  { transform: translate(-50px, 30px) scale(1.04); }
+  66%  { transform: translate(40px, -60px) scale(0.98); }
+  100% { transform: translate(0, 0)    scale(1); }
+}
+@keyframes orbDrift3 {
+  0%   { transform: translate(0, 0)   scale(1); }
+  50%  { transform: translate(30px, 40px) scale(1.06); }
+  100% { transform: translate(0, 0)   scale(1); }
+}
+@keyframes orbDrift4 {
+  0%   { transform: translate(0, 0)    scale(1); }
+  50%  { transform: translate(-40px, -30px) scale(1.05); }
+  100% { transform: translate(0, 0)    scale(1); }
+}
+
+/* Shimmer highlight (used on .btn-primary) */
+@keyframes shimmer {
+  0%   { left: -100%; }
+  100% { left:  100%; }
+}
+
+
+/* ============================================================
+   2. SCROLL-REVEAL BASE CLASSES
+   ── Elements start hidden; JS (animations.js) adds .visible
+      when they scroll into view.
+   ── .reveal-up    → slides up from below
+   ── .reveal-left  → slides in from the left
+   ── .reveal-right → slides in from the right
+   ── animation-delay can be set via CSS custom property --delay
+   ============================================================ */
+
+/* Hidden initial state */
+.reveal-up,
+.reveal-left,
+.reveal-right {
+  opacity:           0;
+  transition:        opacity 0.6s ease, transform 0.6s ease;
+  transition-delay:  var(--delay, 0s);
+}
+
+.reveal-up    { transform: translateY(30px); }
+.reveal-left  { transform: translateX(-40px); }
+.reveal-right { transform: translateX(40px); }
+
+/* Visible state — added by IntersectionObserver in animations.js */
+.reveal-up.visible,
+.reveal-left.visible,
+.reveal-right.visible {
+  opacity:   1;
+  transform: none;
+}
+
+
+/* ============================================================
+   3. MAGNETIC BUTTON EFFECT
+   ── Buttons move slightly toward the cursor.
+      Actual transform is applied via JS (animations.js).
+      These just ensure a smooth return transition.
+   ============================================================ */
+.magnetic-btn {
+  transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1),
+              box-shadow 0.3s ease,
+              opacity 0.3s ease !important;
+  will-change: transform;
+}
+
+/* Shimmer sweep on .btn-primary */
+.btn-primary::after {
+  content:    '';
+  position:   absolute;
+  top:        0; left: -100%;
+  width:      60%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+  transform:  skewX(-20deg);
+}
+.btn-primary:hover::after {
+  animation: shimmer 0.6s ease forwards;
+}
+
+
+/* ============================================================
+   4. FLOATING BADGES
+   ── The three stat badges around the hero code card float
+      continuously in a gentle up-down loop.
+   ============================================================ */
+.float-1 { animation: floatY 4s ease-in-out infinite; }
+.float-2 { animation: floatY 5s ease-in-out infinite 0.5s; }
+.float-3 { animation: floatY 4.5s ease-in-out infinite 1s; }
+
+
+/* ============================================================
+   5. BACKGROUND ORB DRIFT
+   ── Orbs move slowly and organically to add depth.
+   ============================================================ */
+.orb-1 { animation: orbDrift1 20s ease-in-out infinite; }
+.orb-2 { animation: orbDrift2 25s ease-in-out infinite; }
+.orb-3 { animation: orbDrift3 18s ease-in-out infinite; }
+.orb-4 { animation: orbDrift4 22s ease-in-out infinite; }
+
+
+/* ============================================================
+   6. NAVBAR ACTIVE LINK UNDERLINE
+   ── The JS (script.js) adds .active to the matching nav-link
+      on scroll. This draws a colored underline beneath it.
+   ============================================================ */
+.nav-link.active {
+  color:   var(--white);
+}
+.nav-link.active::after {
+  content:    '';
+  display:    block;
+  height:     2px;
+  background: var(--gradient);
+  border-radius: 1px;
+  margin-top: 2px;
+}
+
+
+/* ============================================================
+   7. MISC MICRO-INTERACTIONS
+   ============================================================ */
+
+/* Tech card icon scales on hover */
+.tech-card:hover i {
+  transform:  scale(1.15);
+  transition: transform 0.2s ease;
+}
+
+/* Timeline card border brightens on hover */
+.timeline-card:hover {
+  border-color: rgba(94, 234, 212, 0.15);
+}
+
+/* Project glow intensifies on card hover */
+.project-card:hover .project-glow {
+  opacity: 0.2;
+}
